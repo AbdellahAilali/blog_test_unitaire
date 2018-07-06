@@ -17,13 +17,13 @@ class UserController
     }
 
     /**
-     *
-     * @Route("/blog/{id}", name="blog")
+     * @Route("/user/{id}", name="user")
      */
 
     public function userAction($id)
     {
         /** @var User $user */
+
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['id' => $id]);
         $result['pseudo'] = $user->getPseudo();
         $result['registration'] = $user->getRegistrationDate();
@@ -31,8 +31,8 @@ class UserController
 
         foreach ($user->getComments() as $comment) {
             $tabcomments [] = [
-                $result["title"] = $comment->getTitle(),
-                $result["description"]= $comment->getDescription()
+                "title"=>$comment->getTitle(),
+                "description"=>$comment->getDescription()
             ];
         }
 
